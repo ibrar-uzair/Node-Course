@@ -1,0 +1,40 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title All Products
+    body 
+        header.topnav
+            a(href="/") Home
+            a(href="/show-all/") Products
+        
+        div.container
+            div.image
+                img(src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/t-shirt.png", alt="")
+            
+            div.card-content
+                div.wrapper"
+                div.title Adidas Originals
+                p Men's running shirt
+                span.price $29.99
+                div.content size
+                    div.name size-name Size
+                    div.size-value
+                        span.color XS
+                        span.color S
+                        span.active M
+                        span.color L
+                        span.color XL 
+
+                div.content colour 
+                    div.name.colour-name Colour
+                    div.colour-value
+                        span.white(data-color="lightgrey", data-img="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/t-shirt-large2.png")
+                        span.blue.active(data-color="#456ABD", data-img="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/t-shirt-large.png")
+                        span.yellow(data-color="#EAA523", data-img="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/t-shirt-large3.png")
+
+                div.btns
+                    button Buy now
+                    button Add to cart
