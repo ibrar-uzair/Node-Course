@@ -16,7 +16,7 @@ router.get("/",(req,res,next)=>{
 router.post("/add-product",(req,res,next)=>{
     products.push({title:req.body.name});
     // res.sendFile(path.join(dirRoot,'views','show.html'))
-    res.redirect("/");
+    res.redirect("/", {layout: false});
 })
 
 module.exports.router=router

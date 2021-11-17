@@ -4,17 +4,13 @@ const path=require('path');
 const http=require('http');
 const { parse } = require('path/posix');
 
-const bodyParser = require('body-parser');
 const express=require('express');
-const { engine } = require('express-handlebars');
+const bodyParser = require('body-parser');
+const hbs =require('express-handlebars');
 
 const app=express();
 
-
-app.engine('hbs', engine({ extname: '.hbs'}));
-
-
-app.set('view engine', 'hbs');
+app.set('view engine','pug');
 app.set('views','views');
 
 app.use(bodyParser.urlencoded({extended:false}))

@@ -6,12 +6,18 @@ const { parse } = require('path/posix');
 
 const bodyParser = require('body-parser');
 const express=require('express');
+// const exphbs = require('express-handlebars');
 const { engine } = require('express-handlebars');
 
 const app=express();
 
 
-app.engine('hbs', engine({ extname: '.hbs'}));
+// app.engine('hbs', exphbs({
+//     defaultLayout: 'main-layout',
+//     extname: '.hbs'
+// }));
+
+app.engine('hbs', engine({ extname: '.hbs', defaultLayout: "main"}));
 
 
 app.set('view engine', 'hbs');
