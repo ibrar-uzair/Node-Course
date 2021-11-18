@@ -27,7 +27,7 @@ const shopRoutes=require('./routes/shop')
 app.use(shopRoutes);
 app.use(adminRoutes);
 
-app.use(pageNotFoundController.pageNotFound);
+// app.use(pageNotFoundController);
 
 console.log("Server is listening on port 3000");
 app.listen(3000);

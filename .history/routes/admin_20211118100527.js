@@ -2,16 +2,14 @@
 const express =require('express')
 const path=require('path');
 
-const adminController=require('../controllers/admin_controller')
-
 const dirRoot=require('../utils/paths')
 
 const router = express.Router()
 
 
-router.get("/",adminController.AddProduct)
+router.get("/",)
 
-router.post("/add-product",adminController.AddProductInArray)
+router.post("/add-product",)
 
 module.exports=router
 // module.exports.products=products

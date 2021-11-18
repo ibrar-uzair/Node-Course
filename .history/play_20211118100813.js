@@ -6,7 +6,6 @@ const { parse } = require('path/posix');
 
 const bodyParser = require('body-parser');
 const express=require('express');
-const pageNotFoundController=require('./controllers/404_controller');
 // const { engine } = require('express-handlebars');
 
 const app=express();
@@ -27,7 +26,9 @@ const shopRoutes=require('./routes/shop')
 app.use(shopRoutes);
 app.use(adminRoutes);
 
-app.use(pageNotFoundController.pageNotFound);
+app.use((req,res,next)=>{
+    res.status(404).render('pagenotfound')
+})
 
 console.log("Server is listening on port 3000");
 app.listen(3000);
