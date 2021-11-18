@@ -25,7 +25,7 @@ app.use(adminRoutes);
 
 db.execute('select * from product')
 .then(result=>{
-    console.log(result[0]);
+    console.log(result);
 })
 .catch(err=>{
     console.log(err);

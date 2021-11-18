@@ -8,9 +8,13 @@ const bodyParser = require('body-parser');
 const express=require('express');
 const pageNotFoundController=require('./controllers/404_controller');
 const db = require('./utils/database');
-
+// const { engine } = require('express-handlebars');
 
 const app=express();
+
+
+// app.engine('hbs', engine({ extname: '.hbs'}));
+
 
 app.set('view engine', 'ejs');
 app.set('views','views');
@@ -20,18 +24,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const adminRoutes=require('./routes/admin')
 const shopRoutes=require('./routes/shop')
+
+db.execute('select * from products')
+// .then(result=>{
+//     console.log(result);
+// })
+// .catch(err=>{
+//     console.log(err);
+// });
+
 app.use(shopRoutes);
 app.use(adminRoutes);
-
-db.execute('select * from product')
-.then(result=>{
-    console.log(result[0]);
-})
-.catch(err=>{
-    console.log(err);
-});
- 
-
 
 app.use(pageNotFoundController.pageNotFound);
 

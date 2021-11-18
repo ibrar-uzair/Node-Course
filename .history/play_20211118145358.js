@@ -23,9 +23,9 @@ const shopRoutes=require('./routes/shop')
 app.use(shopRoutes);
 app.use(adminRoutes);
 
-db.execute('select * from product')
+db.execute('select * from products')
 .then(result=>{
-    console.log(result[0]);
+    console.log(result);
 })
 .catch(err=>{
     console.log(err);

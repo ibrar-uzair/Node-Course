@@ -2,17 +2,19 @@
 const db = require('../utils/database');
 
 
+const products=[]
+
 module.exports = class Product{
     constructor(t){
         this.title=t
     }
 
     save(){
-        return db.execute('INSERT INTO shop.product (productName) VALUES (?);',[this.title]);
+        products.push(this)
     }
 
     static getAllProducts(){
-        return db.execute('Select * from product');
+        return db.execute('Select * from products');
     }
 
 }

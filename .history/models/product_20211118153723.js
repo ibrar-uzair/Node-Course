@@ -8,7 +8,7 @@ module.exports = class Product{
     }
 
     save(){
-        return db.execute('INSERT INTO shop.product (productName) VALUES (?);',[this.title]);
+        products.push(this)
     }
 
     static getAllProducts(){

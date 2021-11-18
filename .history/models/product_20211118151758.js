@@ -8,11 +8,11 @@ module.exports = class Product{
     }
 
     save(){
-        return db.execute('INSERT INTO shop.product (productName) VALUES (?);',[this.title]);
+        products.push(this)
     }
 
     static getAllProducts(){
-        return db.execute('Select * from product');
+        return db.execute('Select * from products');
     }
 
 }
