@@ -7,10 +7,10 @@ exports.AddProduct=(req,res,next)=>{
 }
 
 exports.AddProductInArray=(req,res,next)=>{
-    console.log(req.body.name);
-    const prod =new Product(req.body.name) 
+    const prod =new Product(req.body.title) 
     prod.save();
     // res.sendFile(path.join(dirRoot,'views','show.html'))
     res.redirect("/");
 }
 
+exports.products=products
