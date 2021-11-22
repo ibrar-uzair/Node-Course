@@ -1,0 +1,15 @@
+.detailsContainer{
+    background-color: #f2f2f2;
+    padding: 5px 20px 15px 20px;
+    border: 1px solid rgb(134, 128, 128);
+    border-radius: 3px;
+    width: 40%;
+    margin-left: 350px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }

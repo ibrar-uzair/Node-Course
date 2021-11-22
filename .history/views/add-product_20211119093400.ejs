@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link type="text/css" href="/css/products.css" rel="stylesheet">
+
+</head>
+
+<body>
+    
+    <header>
+        <div class="topnav">
+            <a href="/">Home</a>
+            <a href="/show-all/">Products</a>
+        </div>
+    </header>
+    <br>   
+
+    <div class="enterProduct">
+        <form action="/add-product" method="POST">
+
+            <label class="formlabel" for="fname">Enter the name of product:</label><br>
+            <input type="text" id="fname" name="fname"><br>
+            <label class="formlabel" for="lname">Enter the Category:</label><br>
+            <input type="text" id="lname" name="lname">
+
+            <br>
+            <input type="text" name="name"></input><br>
+            <br>
+            <button class="sendbtn">Send</button>
+        </form>
+    </div>
+    <section>
+        <div class="add-product-form">
+            <header class="main-header">Add new product</header>
+            <div class="data">
+                <label for="name">Name:</label>
+                <input type="text" id="name" placeholder="Item name..."/>
+                <label for="category">Category:</label>
+                <input type="text" id="category" placeholder="Category..."/>
+                <label for="price">Price:</label>
+                <input type="text" id="price" placeholder="0.00"/>
+            </div>
+            <div class="panel">
+                <button id="add-product-button" class="button">Add</button>
+                <a href="#/products">
+                    <button class="button" id="cancel-button">Cancel</button>
+                </a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
