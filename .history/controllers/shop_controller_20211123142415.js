@@ -10,11 +10,7 @@ exports.showAllProducts = (req, res, next) => {
 };
 
 exports.showCart = (req, res, next) => {
-  req.user.getCart().then((cart) => {
-    return cart.getProducts().then((Products) => {
-      res.render("cart", { prods: Products, layout: false });
-    });
-  });
+  res.render("cart");
 };
 
 exports.showOrder = (req, res, next) => {
