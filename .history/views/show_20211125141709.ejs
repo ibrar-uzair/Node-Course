@@ -1,0 +1,47 @@
+<%- include('./includes/header.ejs') %>
+   </head>
+   
+   <body>
+      <%- include('./includes/navigation.ejs') %>
+
+      <div class="container">
+         <table class="table">
+         <thead class="thead-dark">
+            <tr>
+               <th scope="col">#</th>
+               <th scope="col">Product Name</th>
+               <th scope="col">Product Category</th>
+               <th scope="col">Product Price</th>
+               <th scope="col">Product Description</th>
+               <th scope="col">Edit Product</th>
+            </tr>
+         </thead>
+         <tbody>
+            <% prods.forEach(function(prod) { %>
+               <form action="/delete-product" method="POST">
+               <tr>
+                  <th scope="row"><%= prod.prodId %></th>
+                  <td><%= prod.prodName %></td>
+                  <td><%= prod.prodCategory %></td>
+                  <td><%= prod.prodPrice %></td>
+                  <td><%= prod.prodDescription %></td>
+                  <td>
+                     <a href="/update-product/<%= prod._id %>">
+                        <button type="button" class="btn btn-warning col-lg-3" ><span style="margin-right: 5px" class="glyphicon glyphicon-pencil"></span>Edit</button>
+                     </a>
+                     <a href="/product-details/<%= prod._id %>">
+                        <button type="button" class="btn btn-info col-lg-3 col-lg-offset-1"><span style="margin-right: 5px" class="glyphicon glyphicon-align-justify"></span>Details</button>
+                     </a>
+                     <a>
+                           <input type="hidden" value="<%= prod._id %>" name="deleteProd" id="prodId">
+                           <button type="submit" class="btn btn-danger col-lg-3 col-lg-offset-1"><span style="margin-right: 5px" class="glyphicon glyphicon-trash"></span>Delete</button>
+                        </a>
+                     </td>
+                  </tr>
+               </form>
+                  <% }); %>
+               </tbody>
+         </table>
+      </div>
+      </body>
+      </html>
