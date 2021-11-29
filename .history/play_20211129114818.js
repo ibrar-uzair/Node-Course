@@ -37,13 +37,11 @@ app.use(shopRoutes);
 app.use(adminRoutes);
 app.use(pageNotFoundController.pageNotFound);
 
-mongoose
-  .connect(
-    "mongodb+srv://uzair:uzair@cluster0.wgjvm.mongodb.net/shop?retryWrites=true&w=majority"
-  )
-  .then((result) => {
-    app.listen(3000);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+mongoConnect.mongoConnect(() => {
+  console.log("Server is running or port 3000");
+  app.listen(3000);
+});
+
+mongoose.connect(
+  "mongodb+srv://uzair:uzair@cluster0.wgjvm.mongodb.net/shop?retryWrites=true&w=majority"
+);
