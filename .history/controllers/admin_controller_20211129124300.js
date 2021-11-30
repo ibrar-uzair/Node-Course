@@ -1,4 +1,4 @@
-// const db = require("../utils/database");
+const db = require("../utils/database");
 
 const Product = require("../models/product");
 
@@ -17,7 +17,6 @@ exports.AddProductInArray = (req, res, next) => {
     prodCategory: category,
     prodPrice: price,
     prodDescription: description,
-    userId: req.user._id,
   });
   product
     .save()
@@ -56,14 +55,7 @@ exports.saveUpdatedProduct = (req, res, next) => {
   const price = req.body.price;
   const description = req.body.description;
 
-  Product.findById(prodId)
-    .then((product) => {
-      product.prodName = name;
-      product.prodPrice = price;
-      product.prodCategory = category;
-      product.prodDescription = description;
-      product.save();
-    })
+  Product.update(prodId, name, category, price, description)
     .then((result) => {
       console.log("Product Updated");
       res.redirect("/show-all");
@@ -75,7 +67,11 @@ exports.saveUpdatedProduct = (req, res, next) => {
 
 exports.deleteProduct = (req, res, next) => {
   const prodId = req.body.deleteProd;
-  Product.findByIdAndRemove(prodId)
+  console.log(
+    "------------------------------------------------------------------------------------"
+  );
+  console.log(prodId);
+  Product.deleteProduct(prodId)
     .then((result) => {
       console.log("Product Deleted");
       res.redirect("/show-all");

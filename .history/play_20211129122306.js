@@ -8,7 +8,7 @@ const pageNotFoundController = require("./controllers/404_controller");
 // const db = require("./utils/database");
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
-// const mongoConnect = require("./utils/database");
+const mongoConnect = require("./utils/database");
 const User = require("./models/user");
 const app = express();
 
@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // Generic Routes always run whenever some route is changed
 
 app.use((req, res, next) => {
-  User.findById("61a4a0f86682450667c41d03")
+  User.findById("619f5cc4d566765f0090b8ea")
     .then((user) => {
       req.user = user;
       next();
@@ -38,23 +38,8 @@ app.use(adminRoutes);
 app.use(pageNotFoundController.pageNotFound);
 
 mongoose
-  .connect(
-    "mongodb+srv://uzair:uzair@cluster0.wgjvm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-  )
+  .connect("mongodb+srv://uzair:<password>@cluster0.wgjvm.mongodb.net/test")
   .then((result) => {
-    console.log("Server started at port number 3000");
-    User.findOne().then((user) => {
-      if (!user) {
-        const user = new User({
-          name: "Max",
-          email: "max@test.com",
-          cart: {
-            items: [],
-          },
-        });
-        user.save();
-      }
-    });
     app.listen(3000);
   })
   .catch((err) => {

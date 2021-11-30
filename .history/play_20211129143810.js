@@ -24,14 +24,14 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Generic Routes always run whenever some route is changed
 
-app.use((req, res, next) => {
-  User.findById("61a4a0f86682450667c41d03")
-    .then((user) => {
-      req.user = user;
-      next();
-    })
-    .catch((err) => console.log(err));
-});
+// app.use((req, res, next) => {
+//   User.findById("619f5cc4d566765f0090b8ea")
+//     .then((user) => {
+//       req.user = user;
+//       next();
+//     })
+//     .catch((err) => console.log(err));
+// });
 
 app.use(shopRoutes);
 app.use(adminRoutes);
@@ -43,18 +43,14 @@ mongoose
   )
   .then((result) => {
     console.log("Server started at port number 3000");
-    User.findOne().then((user) => {
-      if (!user) {
-        const user = new User({
-          name: "Max",
-          email: "max@test.com",
-          cart: {
-            items: [],
-          },
-        });
-        user.save();
-      }
+    const user = new User({
+      name: "Max",
+      email: "max@test.com",
+      cart: {
+        items: [],
+      },
     });
+    user.save();
     app.listen(3000);
   })
   .catch((err) => {

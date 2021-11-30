@@ -17,7 +17,6 @@ exports.AddProductInArray = (req, res, next) => {
     prodCategory: category,
     prodPrice: price,
     prodDescription: description,
-    userId: req.user._id,
   });
   product
     .save()

@@ -3,6 +3,7 @@ const Cart = require("../models/cart");
 
 exports.showAllProducts = (req, res, next) => {
   Product.find()
+    .populate("userId")
     .then((products) => {
       console.log(products);
       res.render("show", { prods: products, layout: false });
@@ -23,22 +24,5 @@ exports.showOrder = (req, res, next) => {
 };
 
 exports.showShop = (req, res, next) => {
-  Product.find()
-    .then((products) => {
-      console.log(products);
-      res.render("shop", { prods: products, layout: false });
-    })
-    .catch((err) => console.log(err));
-};
-
-exports.postCart = (req, res, next) => {
-  const prodId = req.body.productId;
-  Product.findById(prodId)
-    .then((product) => {
-      return req.user.addToCart(product);
-    })
-    .then((result) => {
-      console.log(result);
-      res.redirect("/shop");
-    });
+  res.render("shop");
 };

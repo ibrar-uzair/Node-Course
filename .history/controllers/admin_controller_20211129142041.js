@@ -17,7 +17,6 @@ exports.AddProductInArray = (req, res, next) => {
     prodCategory: category,
     prodPrice: price,
     prodDescription: description,
-    userId: req.user._id,
   });
   product
     .save()
@@ -75,7 +74,11 @@ exports.saveUpdatedProduct = (req, res, next) => {
 
 exports.deleteProduct = (req, res, next) => {
   const prodId = req.body.deleteProd;
-  Product.findByIdAndRemove(prodId)
+  console.log(
+    "------------------------------------------------------------------------------------"
+  );
+  console.log(prodId);
+  Product.deleteProduct(prodId)
     .then((result) => {
       console.log("Product Deleted");
       res.redirect("/show-all");
