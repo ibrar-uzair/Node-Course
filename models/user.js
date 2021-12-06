@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const userSchema = Schema({
-  name: {
+  email: {
     type: String,
     required: true,
   },
-  email: {
+  password: {
     type: String,
     required: true,
   },
@@ -23,7 +23,7 @@ const userSchema = Schema({
   },
 });
 
-userSchema.methods.addToCart = function () {
+userSchema.methods.addToCart = function (product) {
   const cartProductIndex = this.cart.items.findIndex((cp) => {
     return cp.productId.toString() === product._id.toString();
   });
@@ -47,36 +47,3 @@ userSchema.methods.addToCart = function () {
 };
 
 module.exports = mongoose.model("User", userSchema);
-
-// const mongodb = require("mongodb");
-// const getDb = require("../utils/database").getDb;
-
-// const ObjectId = mongodb.ObjectId;
-
-// class User {
-//   constructor(username, email) {
-//     this.name = username;
-//     this.email = email;
-//   }
-
-//   save() {
-//     const db = getDb();
-//     return db.collection("users").insertOne(this);
-//   }
-
-//   static findById(userId) {
-//     const db = getDb();
-//     return db
-//       .collection("users")
-//       .findOne({ _id: new ObjectId(userId) })
-//       .then((user) => {
-//         console.log(user);
-//         return user;
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//   }
-// }
-
-// module.exports = User;

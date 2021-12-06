@@ -4,7 +4,16 @@
     <a href="/show-shop/">Shop</a>
     <a href="/show-order/">Orders</a>
     <a href="/show-cart/">Cart</a>
+    <% if (isAuthenticated ) { %>
     <a href="/show-all/">Admin Products</a>
+    <%}%>
+    <a href="/login/">Login</a>
+    <a href="/signup/">SignUp</a>
+    <% if (isAuthenticated ) { %>
+    <form action="/logout" method="post">
+      <button type="submit">Logout</button>
+    </form>
+    <%}%>
   </div>
 </header>
 <br />

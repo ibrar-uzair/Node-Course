@@ -4,7 +4,10 @@ const Product = require("../models/product");
 
 exports.AddProduct = (req, res, next) => {
   // res.sendFile(path.join(dirRoot,'views','add-product.html'))
-  res.render("add-product", { layout: false });
+  res.render("add-product", {
+    layout: false,
+    isAuthenticated: req.session.isLoggedIn,
+  });
 };
 
 exports.AddProductInArray = (req, res, next) => {
@@ -12,11 +15,14 @@ exports.AddProductInArray = (req, res, next) => {
   const category = req.body.category;
   const price = req.body.price;
   const description = req.body.description;
+  const imageUrl = req.file;
+  console.log(imageUrl);
   const product = new Product({
     prodName: name,
     prodCategory: category,
     prodPrice: price,
     prodDescription: description,
+    imageUrl: imageUrl,
     userId: req.user._id,
   });
   product
@@ -34,7 +40,11 @@ exports.getProduct = (req, res, next) => {
   const prodId = req.params.prodId;
   Product.findById(prodId)
     .then((product) => {
-      res.render("product-details", { prods: product, layout: false });
+      res.render("product-details", {
+        prods: product,
+        layout: false,
+        isAuthenticated: req.session.isLoggedIn,
+      });
     })
     .catch((err) => console.log(err));
 };
@@ -44,17 +54,24 @@ exports.updateProduct = (req, res, next) => {
   Product.findById(prodId)
     .then((product) => {
       console.log(product);
-      res.render("update-product", { prods: product, layout: false });
+      res.render("update-product", {
+        prods: product,
+        layout: false,
+        isAuthenticated: req.session.isLoggedIn,
+      });
     })
     .catch((err) => console.log(err));
 };
 
 exports.saveUpdatedProduct = (req, res, next) => {
+  console.log("Came here");
   const prodId = req.body.prodId;
   const name = req.body.name;
   const category = req.body.category;
   const price = req.body.price;
   const description = req.body.description;
+  const imageUrl = req.file;
+  console.log(imageUrl);
 
   Product.findById(prodId)
     .then((product) => {
@@ -74,13 +91,13 @@ exports.saveUpdatedProduct = (req, res, next) => {
 };
 
 exports.deleteProduct = (req, res, next) => {
-  const prodId = req.body.deleteProd;
+  const prodId = req.params.deleteProd;
   Product.findByIdAndRemove(prodId)
     .then((result) => {
       console.log("Product Deleted");
-      res.redirect("/show-all");
+      res.status(200).json({ message: "Success!" });
     })
     .catch((err) => {
-      console.log(err);
+      res.status(500).json({ message: "Deleting product failed." });
     });
 };

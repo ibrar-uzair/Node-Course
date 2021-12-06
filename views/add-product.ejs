@@ -11,7 +11,7 @@
 
     <div class="enterProduct">
         <section>
-            <form action="/add-product" method="POST">
+            <form action="/add-product" method="POST" enctype="multipart/form-data">
                 <legend class="text-center header">Add Product</legend>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Enter the name of the product</label>
@@ -28,6 +28,12 @@
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Enter the short description</label>
                     <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                </div>
+                <div style="margin-top: 20px;">
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1">Enter the image</label>
+                        <input type="file" class="form-control-file" id="image" name="image">
+                    </div>
                 </div>
                 <br>
                 <div class="panel">

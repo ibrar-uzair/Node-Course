@@ -1,5 +1,6 @@
 const path = require("path");
 const adminRoutes = require("./admin");
+const isAuth = require("../middleware/is-auth");
 
 const express = require("express");
 
@@ -9,14 +10,14 @@ const shopController = require("../controllers/shop_controller");
 
 const router = express.Router();
 
-router.get("/show-all", shopController.showAllProducts);
+router.get("/show-all", isAuth, shopController.showAllProducts);
 
-router.get("/show-cart", shopController.showCart);
+router.get("/show-cart", isAuth, shopController.getCart);
 
-router.get("/show-order", shopController.showOrder);
+router.get("/show-order", isAuth, shopController.showOrder);
 
-router.get("/show-shop", shopController.showShop);
+router.get("/show-shop", isAuth, shopController.showShop);
 
-router.get("/post-cart", shopController.postCart);
+router.get("/post-cart/:_id", isAuth, shopController.postCart);
 
 module.exports = router;
